@@ -6,8 +6,11 @@ main {
 }
 
 .news-container {
+    margin-top: 1.5rem;
+}
+
+.news-container ol {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 1.5rem;
 }
