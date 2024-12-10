@@ -12,11 +12,6 @@ html {
     font-size: 100%;
 }
 
-ul,
-ol {
-    list-style-type: none;
-}
-
 button {
     background: none;
     border: none;
