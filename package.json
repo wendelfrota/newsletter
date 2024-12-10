@@ -1,0 +1,29 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "description": "Simple Newsletter using SSR",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wendelfrota/newsletter.git"
+  },
+  "author": "Wendel Frota",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/wendelfrota/newsletter/issues"
+  },
+  "homepage": "https://github.com/wendelfrota/newsletter#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  }
+}
