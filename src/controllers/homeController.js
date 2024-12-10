@@ -1,6 +1,9 @@
 exports.getHome = (req, res) => {
     res.render('pages/home', {
-        title: 'Página Inicial',
         pageDescription: 'Bem-vindo ao nosso site!'
     });
+};
+
+exports.get404 = (req, res) => {
+    res.render('pages/404');
 };

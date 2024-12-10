@@ -1,12 +1,14 @@
 const express = require('express');
-const { getUsers, createUser } = require('../controllers/userController');
-const { getHome } = require('../controllers/homeController');
+const userController = require('../controllers/userController');
+const homeController = require('../controllers/homeController');
 const router = express.Router();
 
-router.get('/', getHome);
+router.get('/', homeController.getHome);
 
 // Using GET temporarily for debugging (will replace with proper method)
-router.get('/users', getUsers);
-router.get('/create/user', createUser);
+router.get('/users', userController.getUsers);
+router.get('/create/user', userController.createUser);
+
+router.use(homeController.get404)
 
 module.exports = router;
