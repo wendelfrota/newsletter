@@ -1,7 +1,7 @@
 const sequelize = require('../config/database')
 const { DataTypes } = require('sequelize')
 
-const User = sequelize.define('User', {
+const User = sequelize.define('user', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,7 +18,7 @@ const User = sequelize.define('User', {
     },
     _salt: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
 });
 
