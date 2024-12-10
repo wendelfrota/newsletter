@@ -12,13 +12,17 @@ const Post = sequelize.define('post', {
         allowNull: false,
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
-    writer: {
+    writerId: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
+        references: {
+            model: 'Writers',
+            key: 'email'
+        }
+    }
 });
 
 module.exports = Post;
