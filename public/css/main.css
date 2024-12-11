@@ -1,5 +1,16 @@
 main {
     padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
+    min-height: 100dvh;
+    margin: auto;
+}
+
+.news-container {
+    margin-top: 1.5rem;
+}
+
+.news-container ol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }

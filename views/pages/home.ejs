@@ -1,6 +1,30 @@
-<%- include('../layouts/main', { title: 'Página Inicial' , body: ` 
-    <div class="home-container">
-        <h1>Bem-vindo</h1>
-        <p>${pageDescription}</p>
+<%
+const newsItems = [];
+
+for(let i = 0; i< 10; i++) { 
+    newsItems.push(` 
+        <li>
+            <div class="news">
+                <h3>
+                    <a href="#">Title</a>
+                </h3>
+                <small>10 coins · 10 comentários · adm · 1h</small>
+                <hr>
+            </div>
+        </li>
+    `);
+}
+
+const pageBody = `
+    <h1>Bem-vindo</h1>
+    <p>${pageDescription}</p>
+
+    <div class="news-container">
+        <ol>
+            ${newsItems.join('')}
+        </ol>
     </div>
-`}) %>
+`;
+%>
+
+<%- include('../layouts/main', { title: 'Página Inicial' , body: pageBody}) %>
