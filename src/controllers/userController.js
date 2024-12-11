@@ -13,12 +13,17 @@ async function hashPassword(password) {
 
 exports.createUser = async (req, res) => {
     try {
-        const { name, email, password } = req.query;
+        const { name, email, password } = req.body;
+        console.log(req.body)
+        console.log(`Name: ${name}, Email: ${email}`);
         const { salt, hashedPassword } = await hashPassword(password);
 
         const user = await User.create({ name, email, password: hashedPassword, _salt: salt })
 
-        res.status(201).json(user);
+        res.status(201).render('pages/success', {
+            title: 'Página de sucesso',
+            body: `Bem vindo, ${user.name}!`
+        });
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
