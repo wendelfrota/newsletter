@@ -4,6 +4,14 @@ exports.getHome = (req, res) => {
     });
 };
 
+exports.getLogin = (req, res) => {
+    res.render('pages/login');
+};
+
+exports.getSignUp = (req, res) => {
+    res.render('pages/signup');
+};
+
 exports.get404 = (req, res) => {
     res.render('pages/404');
 };
