@@ -7,9 +7,10 @@ router.get('/', routerController.getHome);
 router.get('/login', routerController.getLogin);
 router.get('/signup', routerController.getSignUp);
 
+router.post('/signup', userController.createUser);
+
 // Using GET temporarily for debugging (will replace with proper method)
 router.get('/users', userController.getUsers);
-router.get('/create/user', userController.createUser);
 
 router.use(routerController.get404)
 
