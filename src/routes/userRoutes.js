@@ -8,6 +8,7 @@ router.get('/login', routerController.getLogin);
 router.get('/signup', routerController.getSignUp);
 
 router.post('/signup', userController.createUser);
+router.post('/login', userController.loginUser);
 
 // Using GET temporarily for debugging (will replace with proper method)
 router.get('/users', userController.getUsers);
