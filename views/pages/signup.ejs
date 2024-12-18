@@ -1,9 +1,12 @@
 <%- include('../layouts/main', { title: 'Cadastrar' , body: `
     <form action="/signup" method="POST">
-        <input type="text" name="name" placeholder="name">
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
+        <h1>Cadastrar</h1>
 
-        <input type="submit">
+        <input type="text" name="name" placeholder="Nome">
+        <input type="email" name="email" placeholder="E-Mail">
+        <input type="password" name="password" placeholder="Senha">
+        <input type="password" name="check-password" placeholder="Confirmar senha">
+
+        <input type="submit" value="Cadastrar">
     </form>
 `}) %>
