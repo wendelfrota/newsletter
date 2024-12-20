@@ -11,6 +11,13 @@ async function hashPassword(password) {
     };
 }
 
+function createUserSession(req, user) {
+    req.session.user = {
+        name: user.name,
+        email: user.email
+    }
+}
+
 exports.createUser = async (req, res) => {
     try {
         const { name, email, password, 'check-password': checkPassword } = req.body;
@@ -26,6 +33,8 @@ exports.createUser = async (req, res) => {
         const { salt, hashedPassword } = await hashPassword(password);
 
         const user = await User.create({ name, email, password: hashedPassword, _salt: salt });
+
+        createUserSession(req, user);
 
         res.status(201).render('pages/success', {
             title: 'Página de sucesso',
@@ -57,6 +66,8 @@ exports.loginUser = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Invalid credentials.' });
         }
+
+        createUserSession(req, user);
 
         res.status(200).render('pages/success', {
             title: 'Página de sucesso',
