@@ -71,7 +71,8 @@ exports.loginUser = async (req, res) => {
 
         res.status(200).render('pages/success', {
             title: 'Página de sucesso',
-            body: `Bem vindo de volta, ${user.name}!`
+            body: `Bem vindo de volta, ${user.name}!`,
+            user: req.session.user
         });
     } catch (error) {
         res.status(500).json({ message: error.message })
