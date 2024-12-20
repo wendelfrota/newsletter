@@ -22,6 +22,7 @@ PORT="${7:-8080}"
     echo "DB_DIALECT=$DB_DIALECT"
     echo "NODE_ENV=$NODE_ENV"
     echo "PORT=$PORT"
+    echo "SESSION_SECRET=$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")"
 } > .env
 
 echo ".env file successfully created"

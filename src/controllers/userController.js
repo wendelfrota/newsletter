@@ -11,17 +11,30 @@ async function hashPassword(password) {
     };
 }
 
+function createUserSession(req, user) {
+    req.session.user = {
+        name: user.name,
+        email: user.email
+    }
+}
+
 exports.createUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, 'check-password': checkPassword } = req.body;
 
-        if (!name || !email || !password) {
-            return res.status(400).json({ error: 'Name, email, and password are required.' });
+        if (!name || !email || !password || !checkPassword) {
+            return res.status(400).json({ error: 'Name, email, password and check-password are required.' });
+        }
+
+        if (password !== checkPassword) {
+            return res.status(400).json({ error: 'Password and Check-Password must be equal.' });
         }
 
         const { salt, hashedPassword } = await hashPassword(password);
 
         const user = await User.create({ name, email, password: hashedPassword, _salt: salt });
+
+        createUserSession(req, user);
 
         res.status(201).render('pages/success', {
             title: 'Página de sucesso',
@@ -54,12 +67,15 @@ exports.loginUser = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials.' });
         }
 
+        createUserSession(req, user);
+
         res.status(200).render('pages/success', {
             title: 'Página de sucesso',
-            body: `Bem vindo de volta, ${user.name}!`
+            body: `Bem vindo de volta, ${user.name}!`,
+            user: req.session.user
         });
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: error.message })
     }
 }
 
