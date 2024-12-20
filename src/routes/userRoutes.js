@@ -2,23 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const routerController = require('../controllers/routerController');
 const router = express.Router();
-
-function isAuthenticated(req, res, next) {
-    if (req.session && req.session.user) {
-        return next();
-    } else {
-        res.redirect('/login');
-    }
-}
-
-function isAlreadyAuthenticated(req, res, next) {
-    if (req.session && req.session.user) {
-        return res.redirect('/');
-    } else {
-        return next();
-    }
-}
-
+const { isAlreadyAuthenticated, isAuthenticated } = require('../middlewares/authMiddleware')
 
 router.get('/', routerController.getHome);
 router.get('/login', isAlreadyAuthenticated, routerController.getLogin);
