@@ -1,17 +1,27 @@
+const REDIRECT_ROUTES = {
+    UNAUTHORIZED: '/login',
+    ALREADY_AUTH: '/'
+};
+
 function isAuthenticated(req, res, next) {
-    if (req.session && req.session.user) {
+    const isUserLoggedIn = req.session?.user;
+
+    if (isUserLoggedIn) {
         return next();
-    } else {
-        res.redirect('/login');
     }
+    return res.redirect(REDIRECT_ROUTES.UNAUTHORIZED);
 }
 
 function isAlreadyAuthenticated(req, res, next) {
-    if (req.session && req.session.user) {
-        return res.redirect('/');
-    } else {
-        return next();
+    const isUserLoggedIn = req.session?.user;
+    
+    if (isUserLoggedIn) {
+        return res.redirect(REDIRECT_ROUTES.ALREADY_AUTH);
     }
+    return next();
 }
 
-module.exports = { isAuthenticated, isAlreadyAuthenticated }
+module.exports = {
+    isAuthenticated,
+    isAlreadyAuthenticated
+};
