@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/', routerController.getHome);
 router.get('/login', routerController.getLogin);
 router.get('/signup', routerController.getSignUp);
+router.get('/cookies', (req, res) => res.json(req.session));
 
 router.post('/signup', userController.createUser);
 router.post('/login', userController.loginUser);
