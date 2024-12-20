@@ -74,7 +74,7 @@ exports.loginUser = async (req, res) => {
             body: `Bem vindo de volta, ${user.name}!`
         });
     } catch (error) {
-        res.status(500).json({ message: error })
+        res.status(500).json({ message: error.message })
     }
 }
 
