@@ -13,10 +13,14 @@ async function hashPassword(password) {
 
 exports.createUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, 'check-password': checkPassword } = req.body;
 
-        if (!name || !email || !password) {
-            return res.status(400).json({ error: 'Name, email, and password are required.' });
+        if (!name || !email || !password || !checkPassword) {
+            return res.status(400).json({ error: 'Name, email, password and check-password are required.' });
+        }
+
+        if (password !== checkPassword) {
+            return res.status(400).json({ error: 'Password and Check-Password must be equal.' });
         }
 
         const { salt, hashedPassword } = await hashPassword(password);
