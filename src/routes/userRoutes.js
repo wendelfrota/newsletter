@@ -1,19 +1,20 @@
 const express = require('express');
-const userController = require('../controllers/userController');
-const routerController = require('../controllers/routerController');
 const router = express.Router();
 
+const userController = require('../controllers/userController');
+const routerController = require('../controllers/routerController');
+const { isAuthenticated, isAlreadyAuthenticated } = require('../middlewares/authMiddleware');
+
+router.get('/login', isAlreadyAuthenticated, routerController.getLogin);
+router.get('/signup', isAlreadyAuthenticated, routerController.getSignUp);
+router.post('/login', isAlreadyAuthenticated, userController.loginUser);
+router.post('/signup', isAlreadyAuthenticated, userController.createUser);
+
 router.get('/', routerController.getHome);
-router.get('/login', routerController.getLogin);
-router.get('/signup', routerController.getSignUp);
-router.get('/cookies', (req, res) => res.json(req.session));
 
-router.post('/signup', userController.createUser);
-router.post('/login', userController.loginUser);
+router.get('/users', isAuthenticated, userController.getUsers);
+router.get('/cookies', isAuthenticated, (req, res) => res.json(req.session));
 
-// Using GET temporarily for debugging (will replace with proper method)
-router.get('/users', userController.getUsers);
-
-router.use(routerController.get404)
+router.use(routerController.get404);
 
 module.exports = router;
