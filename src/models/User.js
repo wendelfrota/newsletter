@@ -20,6 +20,10 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    image: {
+        type: DataTypes.BLOB('medium'),
+        allowNull: true
+    }
 });
 
 module.exports = User;
