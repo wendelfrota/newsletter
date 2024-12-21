@@ -1,7 +1,29 @@
 <%- include('../layouts/main', {
-    title: user.name,
-    body: `
-      <img src="${ userImage ? 'data:image/jpeg;base64,' + userImage : '../../img/profile/default_photo.jpg' }" alt="User profile photo">
-    `
-  })
-%>
+  title: user.name,
+  body: `
+    <div class="profile-container">  
+      <div class="photo">
+        <img src="${ userImage ? 'data:image/jpeg;base64,' + userImage : '../../img/profile/default_photo.jpg' }"
+          alt="User profile photo">
+      </div>
+
+      <div class="profile-details">
+        <div class="profile-header">
+          <h1>${user.name}</h1>
+
+          <button id="edit-profile">Edit profile</button>
+        </div>
+
+        <div class="stats">
+            <p>0 News</p>
+            <p>0 Followers</p>
+            <p>0 Following</p>
+        </div>
+
+        <div class="biography">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi mollitia a itaque laboriosam, nesciunt illum omnis voluptate ullam animi repellat suscipit voluptatibus. Quidem enim odit doloribus quia corporis. Neque!</p>
+        </div>
+      </div>
+    </div>
+  `
+}) %>
