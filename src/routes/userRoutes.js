@@ -12,6 +12,7 @@ router.post('/signup', isAlreadyAuthenticated, userController.createUser);
 
 router.get('/', routerController.getHome);
 
+router.get('/profile', isAuthenticated, routerController.getProfile);
 router.get('/users', isAuthenticated, userController.getUsers);
 router.get('/cookies', isAuthenticated, (req, res) => res.json(req.session));
 

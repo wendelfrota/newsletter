@@ -15,3 +15,13 @@ exports.getSignUp = (req, res) => {
 exports.get404 = (req, res) => {
     res.render('pages/404');
 };
+
+exports.getProfile = (req, res) => {
+    let userImage = null;
+
+    if (req.session.user?.image?.data) {
+        userImage = Buffer.from(req.session.user.image.data).toString('base64');
+      }
+
+    res.render('pages/profile', { userImage });
+}

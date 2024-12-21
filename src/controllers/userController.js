@@ -14,7 +14,8 @@ async function hashPassword(password) {
 function createUserSession(req, user) {
     req.session.user = {
         name: user.name,
-        email: user.email
+        email: user.email,
+        image: user.image || null,
     }
 }
 

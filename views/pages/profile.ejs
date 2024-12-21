@@ -1,0 +1,7 @@
+<%- include('../layouts/main', {
+    title: user.name,
+    body: `
+      <img src="${ userImage ? 'data:image/jpeg;base64,' + userImage : '../../img/profile/default_photo.jpg' }" alt="User profile photo">
+    `
+  })
+%>
