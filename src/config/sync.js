@@ -3,6 +3,7 @@ require('dotenv').config();
 const sequelize = require('./database');
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Writer = require('../models/Writer');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 

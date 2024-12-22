@@ -1,5 +1,5 @@
-const sequelize = require('../config/database')
-const { DataTypes } = require('sequelize')
+const sequelize = require('../config/database');
+const { DataTypes } = require('sequelize');
 
 const Post = sequelize.define('post', {
     id: {
@@ -19,10 +19,10 @@ const Post = sequelize.define('post', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'Writers',
-            key: 'email'
-        }
-    }
+            model: 'users',
+            key: 'email',
+        },
+    },
 });
 
 module.exports = Post;

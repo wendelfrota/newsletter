@@ -1,9 +1,8 @@
-// models/Writer.js
 const sequelize = require('../config/database')
-const User = require('./User')
 const { DataTypes } = require('sequelize')
 
-const Writer = User.prototype.constructor.extend('writer', {
+const Writer = sequelize.define('writer',
+{
     specialization: {
         type: DataTypes.STRING,
         allowNull: true

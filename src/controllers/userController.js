@@ -14,7 +14,8 @@ async function hashPassword(password) {
 function createUserSession(req, user) {
     req.session.user = {
         name: user.name,
-        email: user.email
+        email: user.email,
+        image: user.image || null,
     }
 }
 
@@ -53,7 +54,7 @@ exports.loginUser = async (req, res) => {
         if (!email || !password) {
             return res.status(400).json({ error: 'Email and password are required.' });
         }
-        
+
         const user = await User.findOne({ where: { email } });
 
         if (!user) {
@@ -76,6 +77,15 @@ exports.loginUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
+}
+
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error closing session.' });
+        }
+        res.redirect('/');
+    });
 }
 
 exports.getUsers = async (req, res) => {
