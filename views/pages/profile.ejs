@@ -1,5 +1,5 @@
 <%- include('../layouts/main', {
-  title: user.name,
+  title: user?.name || 'Profile',
   body: `
     <div class="profile-container">  
       <div class="photo">
@@ -9,19 +9,19 @@
 
       <div class="profile-details">
         <div class="profile-header">
-          <h1>${user.name}</h1>
+          <h1>${ user?.name || 'User' }</h1>
 
           <button id="edit-profile">Edit profile</button>
         </div>
 
         <div class="stats">
-            <p>0 News</p>
-            <p>0 Followers</p>
-            <p>0 Following</p>
+            <p>${ user?.stats?.news || 0 } News</p>
+            <p>${ user?.stats?.followers || 0 } Followers</p>
+            <p>${ user?.stats?.following || 0 } Following</p>
         </div>
 
         <div class="biography">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda modi mollitia a itaque laboriosam, nesciunt illum omnis voluptate ullam animi repellat suscipit voluptatibus. Quidem enim odit doloribus quia corporis. Neque!</p>
+          <p>${ user?.bio || 'No biography available.' }</p>
         </div>
       </div>
     </div>
